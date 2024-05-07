@@ -61,3 +61,28 @@ const flatten = (arr) => {
   
   const nestedArray = [1, [2, [3, 4], 5], [6, 7]];
   console.log(trampolineFlatten(nestedArray));
+
+  //Part 3: Deferred Execution
+
+  const primeListElement = document.getElementById('primeList');
+
+  function isPrime(num) {
+    for (let i = 2, sqrt = Math.sqrt(num); i <= sqrt; i++) {
+      if (num % i === 0) return false;
+    }
+    return num > 1;
+  }
+
+  function addPrimeNumbers(n, current = 2) {
+    if (current <= n) {
+      if (isPrime(current)) {
+        primeListElement.innerHTML += current + ', ';
+      }
+      setTimeout(() => addPrimeNumbers(n, current + 1), 0);
+    } else {
+      alert('Calculation finished!');
+    }
+  }
+
+  addPrimeNumbers(10000);
+
